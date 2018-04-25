@@ -291,17 +291,17 @@ def simplify(prepexpr):
 
     primeslist = [x for x in primeslist if x not in essentialsprimes]  # remove essentials
 
-    possiblesolutions = solutions(implicantlist)
+    possiblesolutions = solutions(implicantlist[::-1])
 
     ret = None
 
     for sol in possiblesolutions:
         if check_list_eq(get_coverage(sol), primeslist):
             ret = sol + essentials
-
+            break;
     if ret != None:
-            ret = [x[1] for x in ret]
+        ret = [x[1] for x in ret]
     return convert_to_string(ret)
 
 
-print(simplify("a!c"))
+print(simplify("a|c"))
